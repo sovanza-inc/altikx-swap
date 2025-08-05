@@ -1,0 +1,7 @@
+body,html{
+    background-image: url('./assets/token_swap_bg.svg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
