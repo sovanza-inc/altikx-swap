@@ -176,7 +176,11 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
     setWalletView(WALLET_VIEWS.PENDING)
     activate(connector, undefined, true).catch(error => {
       if (error instanceof UnsupportedChainIdError) {
-        activate(connector) // a little janky...can't use setError because the connector isn't set
+        // activate(connector) // a little janky...can't use setError because the connector isn't set
+        // Try to activate without error handling to bypass network check
+        activate(connector, undefined, false).catch(() => {
+          setPendingError(true)
+        })
       } else {
         setPendingError(true)
       }
@@ -283,7 +287,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
-              <h5>Please connect to the main AltikX Ethereum network.</h5>
+              <h5>Please connect to the main Ethereum network.</h5>
             ) : (
               'Error connecting. Try refreshing the page.'
             )}
