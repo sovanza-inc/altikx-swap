@@ -86,6 +86,14 @@ const Title = styled.div`
       color: ${({ theme }) => darken(0.1, theme.wisteriaPurple)};
     }
   }
+
+  img {
+    
+    @media (max-width: 768px) {
+      width: 150px;
+    }
+   
+  }
 `
 
 const TestnetWrapper = styled.div`
